@@ -1,4 +1,4 @@
-# Milestone 1 - APP_NAME_HERE (Unit 7)
+# Milestone 1 - Cinemania (Unit 7)
 
 ## Table of Contents
 
@@ -7,20 +7,18 @@
 1. [Wireframes](#Wireframes)
 
 ## Overview
+Cinemania is your ultimate companion for discovering the perfect movie or TV show you can actually watch.
 
 ### Description
-
-[Description of your app]
+Users can effortlessly explore personalized recommendations based on their subscribed streaming services and interests. Whether you're a fan of thrilling dramas, side-splitting comedies, or captivating documentaries, Cinemania ensures you never miss out on your next favorite watch. Cinemania lets you say goodbye to endless scrolling, and choosing a movie you can't actually watch, and hello to curated entertainment experiences, accessible straight through the application. 
 
 ### App Evaluation
-
-[Evaluation of your app across the following attributes]
-- **Category:**
-- **Mobile:**
-- **Story:**
-- **Market:**
-- **Habit:**
-- **Scope:**
+- **Category:** Entertainment and Media
+- **Mobile:** Mobile application makes it easier to make quick decisions and incorporates directly with other services on the device through their corresponding APIs, making for a smoother experience compared to a website. 
+- **Story:** Allows for users to select movies/shows they want to watch based on their interests and the content they actually have access to across multiple streaming services and platforms. 
+- **Market:** Anyone subscribed to/frequently using 2+ streaming services! 
+- **Habit:** Users can be prompted with notifications at certain points of the day to look at the application. Social media features could be incorporated into the application to form habits with peers. 
+- **Scope:** Initial narrow focus, with large potential for expansion! Initial idea is to provide suggestions and recommendations based on previously enjoyed and currently available content. 
 
 ## Product Spec
 
