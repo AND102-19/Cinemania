@@ -26,54 +26,51 @@ Users can effortlessly explore personalized recommendations based on their subsc
 
 **Required Features**
 
-1. [fill in your required user features here]
-2. ...
-3. ...
+1. Users can receive recommendations based on their subscribed streaming services and interests.
+2. Users can connect multiple streaming platforms to provide accurate recommendations.
+3. Users can create profiles to save preferences, view watch history, and manage settings.
 
 **Optional Features**
 
-1. [fill in your optional user features here]
-2. ...
-3. ...
+1. Users can connect with friends and share movie recommendations or watchlists.
+2. Users can create and manage a list of movies they want to watch in the future.
+3. Users can rate and review movies they have watched.
 
 ### 2. Screen Archetypes
 
-- [list first screen here]
-  - [list associated required story here]
-  - ...
-- [list second screen here]
-  - [list associated required story here]
-  - ...
-
+- Home Screen
+  - Displays personalized movie recommendations based on user preferences and subscribed streaming services.
+- Profile Screen
+  - Allows users to view and edit their profile information, including preferences, watch history, and settings.
+- Search Screen
+  - Enables users to search for specific movies or browse by genre, release date, or streaming platform.
+- History Screen
+  - Enables users to view previously watched movies.
+- Details Screen
+  - Enables users to view additional movie details
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Home
+* Search
+* History
+* Profile
 
 **Flow Navigation** (Screen to Screen)
 
-- [list first screen here]
-  - [list screen navigation here]
-  - ...
-- [list second screen here]
-  - [list screen navigation here]
-  - ...
-
+- Home
+  - Details
+- Watch History
+  - Details
+- Search
+  - Details
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
-<br>
-
-<br>
+[Hand sketched wireframes] <img src="https://raw.githubusercontent.com/AND102-19/Cinemania/master/IMG_7317.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
+[Figma Link](https://www.figma.com/file/uqIm4WQzrUKT98Dl5rWwIm/Cinemania?type=design&node-id=0-1&mode=design)
 <br>
 
 # Milestone 2 - Build Sprint 1 (Unit 8)
