@@ -90,7 +90,7 @@ Users can effortlessly explore personalized recommendations based on their subsc
 - Setup our project
 - Began dividing work for features
 <br>
-
+<img src="https://raw.githubusercontent.com/AND102-19/Cinemania/master/milestone2.gif" width=600>
 # Milestone 3 - Build Sprint 2 (Unit 9)
 
 ## GitHub Project board
