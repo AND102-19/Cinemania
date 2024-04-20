@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.and102.cinemania"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.and102.cinemania"
