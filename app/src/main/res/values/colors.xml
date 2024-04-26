@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="navyblue">#000053</color>
+    <color name="movie_item_background">#8080A9</color>
 </resources>
