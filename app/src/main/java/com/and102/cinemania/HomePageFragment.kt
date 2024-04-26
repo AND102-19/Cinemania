@@ -1,59 +1,92 @@
 package com.and102.cinemania
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.widget.ContentLoadingProgressBar
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.codepath.asynchttpclient.AsyncHttpClient
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import okhttp3.Headers
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val WATCHMODE_API_KEY = "a0JMajQRghyDuTslLkf6BSfovXBW7yWTcb2iw8wS"
+private const val TMDB_API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+private const val NETFLIX_SOURCE_ID = "203"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomePageFragment.newInstance] factory method to
- * create an instance of this fragment.
+/*
+ * The class for the movies fragment in the app.
  */
 class HomePageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    var onListFragmentInteractionListener: ((Movie) -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page, container, false)
+        val view = inflater.inflate(R.layout.fragment_home_page, container, false)
+        val progressBar = view.findViewById<ContentLoadingProgressBar>(R.id.progressBar)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rvCinemaList)
+        val context = view.context
+        recyclerView.layoutManager = GridLayoutManager(context, 1)
+        updateAdapter(progressBar, recyclerView)
+        return view
     }
+    private fun updateAdapter(progressBar: ContentLoadingProgressBar, recyclerView: RecyclerView) {
+        progressBar.show()
+        val client = AsyncHttpClient()
+        val tmdbIds = mutableListOf<Int>()
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomePageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomePageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        // Fetch the list of TMDB IDs from Watchmode
+        client.get("https://api.watchmode.com/v1/list-titles/?source_ids=$NETFLIX_SOURCE_ID&apiKey=$WATCHMODE_API_KEY", object : JsonHttpResponseHandler() {
+            override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+                val moviesArray = json.jsonObject.getJSONArray("titles")
+                for (i in 0 until moviesArray.length()) {
+                    val tmdbId = moviesArray.getJSONObject(i).optInt("tmdb_id")
+                    tmdbIds.add(tmdbId)
+                }
+
+                // Now fetch details from TMDB for each movie ID
+                val detailedMovies = mutableListOf<Movie>()
+                var fetchCount = 0
+                tmdbIds.forEach { tmdbId ->
+                    Log.d("HomePageFragment", "Fetching details for TMDB ID: $tmdbId")
+                    client.get("https://api.themoviedb.org/3/movie/$tmdbId?api_key=$TMDB_API_KEY", object : JsonHttpResponseHandler() {
+                        override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+                            val movie = Gson().fromJson(json.jsonObject.toString(), Movie::class.java)
+                            detailedMovies.add(movie)
+                            fetchCount++
+                            // Update RecyclerView once all fetches are complete
+                            if (fetchCount == tmdbIds.size) {
+                                recyclerView.adapter = MoviesRecyclerViewAdapter(detailedMovies, onListFragmentInteractionListener)
+                                progressBar.hide()
+                            }
+                        }
+
+                        override fun onFailure(statusCode: Int, headers: Headers?, errorResponse: String, throwable: Throwable?) {
+                            fetchCount++
+                            Log.e("HomePageFragment", "Failed to fetch movie details: $errorResponse")
+                            // Update RecyclerView even if some fetches fail
+                            if (fetchCount == tmdbIds.size) {
+                                recyclerView.adapter = MoviesRecyclerViewAdapter(detailedMovies, onListFragmentInteractionListener)
+                                progressBar.hide()
+                            }
+                        }
+                    })
                 }
             }
+
+            override fun onFailure(statusCode: Int, headers: Headers?, errorResponse: String, throwable: Throwable?) {
+                progressBar.hide()
+                Log.e("HomePageFragment", "Failed to fetch TMDB IDs: $errorResponse")
+            }
+        })
     }
+
 }
