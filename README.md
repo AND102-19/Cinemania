@@ -96,17 +96,19 @@ Users can effortlessly explore personalized recommendations based on their subsc
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="https://raw.githubusercontent.com/AND102-19/Cinemania/master/four.png" width=600>" width=600>
 
-## Completed user stories
+## Completed User Stories
+1. Users can receive recommendations based on their subscribed streaming services and interests.
+  - Currently only works on Netflix
+3. Users can create profiles to save preferences, view watch history, and manage settings.
+  - Currently works with initial user authentication
+   
+## Pending User Stories
+2. Users can connect multiple streaming platforms to provide accurate recommendations.
 
-- List the completed user stories from this unit
-- List any pending user stories / any user stories you decided to cut
-from the original requirements
-
-[Add video/gif of your current application that shows build progress]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+## App Demo GIF 
+<img src="https://imgur.com/VkJBSOI" width=600>
 
 ## App Demo Video
-
 - Embed the YouTube/Vimeo link of your Completed Demo Day prep video
