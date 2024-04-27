@@ -1,14 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- User profile section -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/user_image"
+        android:scaleType="centerCrop" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="TonyBui"
+        android:textStyle="bold" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/user_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="@string/user_description" />
+
+    <!-- Favorite Streaming Services Section -->
+    <TextView
+        android:id="@+id/favorite_services_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_description"
+        android:layout_marginTop="16dp"
+        android:text="Favorite Streaming Services:"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/netflix_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/favorite_services_title"
+        android:src="@drawable/netflix_logo"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Netflix" />
+
+    <!-- Logout Button -->
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/netflix_icon"
+        android:layout_marginTop="16dp"
+        android:text="Logout" />
+
+
+</RelativeLayout>
