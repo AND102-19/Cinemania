@@ -111,4 +111,4 @@ Users can effortlessly explore personalized recommendations based on their subsc
 [View Here](https://i.imgur.com/VkJBSOI.mp4)
 
 ## App Demo Video
-- Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+[View Here](https://youtu.be/6PDUGcFlHKY)
