@@ -1,59 +1,73 @@
 package com.and102.cinemania
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.widget.ContentLoadingProgressBar
+import androidx.recyclerview.widget.RecyclerView
+import com.codepath.asynchttpclient.AsyncHttpClient
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.google.gson.Gson
+import okhttp3.Headers
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.and102.cinemania.History
+private const val TMDB_API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+class HistoryFragment : Fragment(R.layout.fragment_history) {
+    var onListFragmentInteraction: ((Movie) -> Unit)? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rvCinemaList)
+        val progressBar = view.findViewById<ContentLoadingProgressBar>(R.id.progressBar)
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HistoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HistoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+        loadMovieHistory(recyclerView, progressBar)
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private fun loadMovieHistory(recyclerView: RecyclerView, progressBar: ContentLoadingProgressBar) {
+        val movieIds = History.clickedMovieIds
+        Log.d("HistoryFragment", "Loading history, current movie IDs: $movieIds")
+
+
+        if (movieIds.isEmpty()) {
+            progressBar.hide()
+        } else {
+            fetchMovieDetails(movieIds, recyclerView, progressBar)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
+    private fun fetchMovieDetails(movieIds: List<Int>, recyclerView: RecyclerView, progressBar: ContentLoadingProgressBar) {
+        val client = AsyncHttpClient()
+        val detailedMovies = mutableListOf<Movie>()
+        var fetchCount = 0
+        Log.d("HistoryFragment", "movie size: ${movieIds.size}")
+        movieIds.forEach { tmdbId ->
+            val url = "https://api.themoviedb.org/3/movie/$tmdbId?api_key=$TMDB_API_KEY"
+            client.get(url, object : JsonHttpResponseHandler() {
+                override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON) {
+                    Log.d("HistoryFragment", "JSON received: ${json.jsonObject}")
+                    val movie = Gson().fromJson(json.jsonObject.toString(), Movie::class.java)
+                    detailedMovies.add(movie)
+                    fetchCount++
+                    if (fetchCount == movieIds.size) {
+                        recyclerView.adapter = MoviesRecyclerViewAdapter(detailedMovies, onListFragmentInteraction)
+                        progressBar.hide()
+                    }
+                }
+
+                override fun onFailure(statusCode: Int, headers: Headers?, errorResponse: String?, throwable: Throwable?) {
+                    fetchCount++
+                    if (fetchCount == movieIds.size) {
+                        recyclerView.adapter = MoviesRecyclerViewAdapter(detailedMovies, onListFragmentInteraction)
+                        progressBar.hide()
+                        Log.e("HistoryFragment", "Failed to fetch movie details: $errorResponse")
+                    }
+                }
+            })
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HistoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HistoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
+
+
 }

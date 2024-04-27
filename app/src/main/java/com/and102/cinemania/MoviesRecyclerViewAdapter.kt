@@ -2,6 +2,7 @@ package com.and102.cinemania
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+
+import com.and102.cinemania.History
+
 
 /**
  * [RecyclerView.Adapter] that can display a [Movie] and makes a call to the
@@ -43,10 +47,14 @@ class MoviesRecyclerViewAdapter(
         holder.mMovieDescription.text = movie.overview
         holder.mView.setOnClickListener {
             holder.mItem?.let { movie ->
+                Log.d("MoviesAdapter", "Movie clicked: ${movie.id}")
+                History.clickedMovieIds.add(movie.id)
+                Log.d("HistoryFragment", "Loading history, current movie IDs: ${History.clickedMovieIds}")
                 val context = holder.mView.context
                 val intent = Intent(context, MovieDetailActivity::class.java)
                 intent.putExtra("movie", movie)
                 context.startActivity(intent)
+                mListener?.invoke(movie)
             }
         }
 
