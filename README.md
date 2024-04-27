@@ -108,7 +108,7 @@ Users can effortlessly explore personalized recommendations based on their subsc
 2. Users can connect multiple streaming platforms to provide accurate recommendations.
 
 ## App Demo GIF 
-<img src="https://i.imgur.com/VkJBSOI.mp4" width=600>
+[View Here](https://i.imgur.com/VkJBSOI.mp4)
 
 ## App Demo Video
 - Embed the YouTube/Vimeo link of your Completed Demo Day prep video
