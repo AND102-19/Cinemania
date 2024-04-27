@@ -41,15 +41,14 @@ class MoviesRecyclerViewAdapter(
         holder.mItem = movie
         holder.mMovieTitle.text = movie.title
         holder.mMovieDescription.text = movie.overview
-// Uncomment this after adding Movie Activity!!!
-//        holder.mView.setOnClickListener {
-//            holder.mItem?.let { movie ->
-//                val context = holder.mView.context
-//                val intent = Intent(context, MovieDetailActivity::class.java)
-//                intent.putExtra("movie", movie)
-//                context.startActivity(intent)
-//            }
-//        }
+        holder.mView.setOnClickListener {
+            holder.mItem?.let { movie ->
+                val context = holder.mView.context
+                val intent = Intent(context, MovieDetailActivity::class.java)
+                intent.putExtra("movie", movie)
+                context.startActivity(intent)
+            }
+        }
 
 
         Glide.with(holder.mView)
