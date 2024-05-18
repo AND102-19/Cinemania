@@ -1,5 +1,4 @@
-# Milestone 1 - Cinemania (Unit 7)
-
+# Cinemania
 ## Table of Contents
 
 1. [Overview](#Overview)
@@ -22,15 +21,13 @@ Users can effortlessly explore personalized recommendations based on their subsc
 
 ## Product Spec
 
-### 1. User Features (Required and Optional)
+### 1. User Features
 
-**Required Features**
+**Features**
 
 1. Users can receive recommendations based on their subscribed streaming services and interests.
 2. Users can connect multiple streaming platforms to provide accurate recommendations.
 3. Users can create profiles to save preferences, view watch history, and manage settings.
-
-**Optional Features**
 
 1. Users can connect with friends and share movie recommendations or watchlists.
 2. Users can create and manage a list of movies they want to watch in the future.
@@ -60,11 +57,13 @@ Users can effortlessly explore personalized recommendations based on their subsc
 **Flow Navigation** (Screen to Screen)
 
 - Home
-  - Details
+  - Show a list of all movie items
 - Watch History
-  - Details
+  - Show a list of clicked movie items
 - Search
-  - Details
+  - Show a list of movie items based on keyword search
+- Profile
+  - Show user infomation include user's profile image, and favorite services
 ## Wireframes
 
 [Hand sketched wireframes] <img src="https://raw.githubusercontent.com/AND102-19/Cinemania/master/IMG_7317.jpg" width=600>
@@ -91,8 +90,6 @@ Users can effortlessly explore personalized recommendations based on their subsc
 - Began dividing work for features
 <br>
 <img src="https://raw.githubusercontent.com/AND102-19/Cinemania/master/milestone2.gif" width=600>
-
-# Milestone 3 - Build Sprint 2 (Unit 9)
 
 ## GitHub Project board
 
