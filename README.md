@@ -65,10 +65,9 @@ Users can effortlessly explore personalized recommendations based on their subsc
 - Profile
   - Show user infomation include user's profile image, and favorite services
 ## Wireframes
+<img src="https://raw.githubusercontent.com/AND102-19/Cinemania/master/IMG_7317.jpg" width=600>
 
-[Hand sketched wireframes] <img src="https://raw.githubusercontent.com/AND102-19/Cinemania/master/IMG_7317.jpg" width=600>
-
-### [BONUS] Digital Wireframes & Mockups
+### Digital Wireframes & Mockups
 [Figma Link](https://www.figma.com/file/uqIm4WQzrUKT98Dl5rWwIm/Cinemania?type=design&node-id=0-1&mode=design)
 <br>
 
