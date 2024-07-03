@@ -11,6 +11,13 @@ Cinemania is your ultimate companion for discovering the perfect movie or TV sho
 ### Description
 Users can effortlessly explore personalized recommendations based on their subscribed streaming services and interests. Whether you're a fan of thrilling dramas, side-splitting comedies, or captivating documentaries, Cinemania ensures you never miss out on your next favorite watch. Cinemania lets you say goodbye to endless scrolling, and choosing a movie you can't actually watch, and hello to curated entertainment experiences, accessible straight through the application. 
 
+
+## App Demo GIF 
+[View Here](https://i.imgur.com/VkJBSOI.mp4)
+
+## App Demo Video
+[View Here](https://youtu.be/6PDUGcFlHKY)
+
 ### App Evaluation
 - **Category:** Entertainment and Media
 - **Mobile:** Mobile application makes it easier to make quick decisions and incorporates directly with other services on the device through their corresponding APIs, making for a smoother experience compared to a website. 
@@ -103,8 +110,3 @@ Users can effortlessly explore personalized recommendations based on their subsc
 ## Pending User Stories
 2. Users can connect multiple streaming platforms to provide accurate recommendations.
 
-## App Demo GIF 
-[View Here](https://i.imgur.com/VkJBSOI.mp4)
-
-## App Demo Video
-[View Here](https://youtu.be/6PDUGcFlHKY)
